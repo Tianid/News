@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GEQ-Dl-5uu">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--DTF-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="DTFTableViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FJR-xb-xwr">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="gdL-xx-VFT"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Z6N-l8-b1o"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="FJR-xb-xwr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1da-z7-XWT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FJR-xb-xwr" secondAttribute="bottom" id="4P7-yh-KmA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FJR-xb-xwr" secondAttribute="trailing" id="J4A-mn-l90"/>
+                            <constraint firstItem="FJR-xb-xwr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="pQz-CA-Bpf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="DTF" id="7J3-Jl-BUM"/>
+                    <connections>
+                        <outlet property="myTableView" destination="FJR-xb-xwr" id="1cr-fV-HeB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="890" y="-192"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="SAe-j4-QR6">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="GEQ-Dl-5uu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nTR-T9-clW">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="zN2-ed-sbR"/>
+                        <segue destination="LpI-fC-2sm" kind="relationship" relationship="viewControllers" id="R3u-WT-sma"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UVI-8K-DFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="115.84821428571428"/>
+        </scene>
+        <!--Tj-->
+        <scene sceneID="UT6-o8-h3z">
+            <objects>
+                <viewController id="LpI-fC-2sm" customClass="TJTableViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lB7-9F-4yM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qbq-qN-IZ5">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="LpI-fC-2sm" id="65b-Jv-49y"/>
+                                    <outlet property="delegate" destination="LpI-fC-2sm" id="hku-VQ-Amk"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UBl-Kn-PAZ" firstAttribute="trailing" secondItem="qbq-qN-IZ5" secondAttribute="trailing" id="1a4-at-pAn"/>
+                            <constraint firstItem="UBl-Kn-PAZ" firstAttribute="bottom" secondItem="qbq-qN-IZ5" secondAttribute="bottom" id="KN5-D7-pi6"/>
+                            <constraint firstItem="qbq-qN-IZ5" firstAttribute="top" secondItem="UBl-Kn-PAZ" secondAttribute="top" id="YAw-jA-mKE"/>
+                            <constraint firstItem="qbq-qN-IZ5" firstAttribute="leading" secondItem="UBl-Kn-PAZ" secondAttribute="leading" id="aSq-Yf-3Bt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UBl-Kn-PAZ"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Tj" id="xw5-YY-S6U"/>
+                    <connections>
+                        <outlet property="myTableView" destination="qbq-qN-IZ5" id="8zw-MY-vPA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A7X-Ie-y6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="890" y="503"/>
+        </scene>
+    </scenes>
+</document>
