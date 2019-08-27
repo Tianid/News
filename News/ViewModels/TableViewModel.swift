@@ -7,18 +7,32 @@
 //
 
 import Foundation
-
+import UIKit
 
 class TableViewModel: TableViewViewModelType {
     
+    
+    
     private var posts: [Post]?
+    var postImageData: [Int : UIImage]? = [:]
+    
     var apiURL: String? {
         willSet {
             guard let value = newValue else { return }
             let networkManager = NetworkManager(url: value)
-            networkManager.getNews { [weak self] in
-                self?.posts = $0
+            networkManager.getNews {[weak self] in
+                if $0 != nil {
+                   self?.posts = $0
+                }
+//                self?.postImageData = $1
+                if $1 != nil {
+                    self?.postImageData = $1
+                    guard let update = self!.updateTable else { return }
+                    
+                    update()                }
+                
                 self!.isNeededToReloadTable = !self!.isNeededToReloadTable
+                
             }
         }
     }
@@ -42,7 +56,8 @@ class TableViewModel: TableViewViewModelType {
     
     func cellViewModel(forIndexPatth indexPath: IndexPath) -> TableViewCellViewModelType? {
         guard let post = posts?[indexPath.row] else { return TableViewCellViewModel() }
-        return TableViewCellViewModel(post: post)
+        guard let data = postImageData![post.id] else { return TableViewCellViewModel(post: post, postImageData: nil) }
+        return TableViewCellViewModel(post: post, postImageData: data)
     }
     
     func viewModelForSelectedRow() -> DetailViewModelType? {

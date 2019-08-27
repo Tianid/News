@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import UIKit
 
 protocol TableViewViewModelType {
     var apiURL: String? { get set }
     var updateTable: (() -> ())? { get set }
+    
+    var postImageData: [Int:UIImage]? { get }
     
     func numberOfRows() -> Int?
     func cellViewModel(forIndexPatth indexPath: IndexPath) -> TableViewCellViewModelType?

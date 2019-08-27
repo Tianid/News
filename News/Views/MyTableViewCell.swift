@@ -15,12 +15,33 @@ class MyTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    
     weak var viewModel: TableViewCellViewModelType? {
         willSet(viewModel) {
             guard let _ = viewModel else { return }
             titleLabel.text = viewModel?.title
-            descriptionLabel.text = viewModel?.intro
+            var intro: String = String()
+            if let data = viewModel?.postImage {
+                DispatchQueue.main.async {
+                    self.postImage.image = data
+                }
+            } else {
+                self.postImage.image = nil //MARK:make some stub JPG in future
+            }
+            for block in viewModel!.blocks {
+                
+                if block.cover == true, block.type == "text" {
+                    intro = block.data.text!
+                }
+            }
+            descriptionLabel.text = intro
             dateLabel.text = viewModel?.date
         }
     }
+    var img: UIImage {
+//        let imgg = UIImage(data: (viewModel?.postImage)!)!
+        return UIImage()
+    }
+    
+    
 }
