@@ -18,6 +18,7 @@ class MyTableViewCell: UITableViewCell {
     
     weak var viewModel: TableViewCellViewModelType? {
         willSet(viewModel) {
+            
             guard let _ = viewModel else { return }
             titleLabel.text = viewModel?.title
             var intro: String = String()

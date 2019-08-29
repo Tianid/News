@@ -12,7 +12,9 @@ import UIKit
 protocol TableViewViewModelType {
     var apiURL: String? { get set }
     var updateTable: (() -> ())? { get set }
+    var updateRows: (([IndexPath]) -> ())? { get set }
     
+    var posts: [Post]? { get }
     var postImageData: [Int:UIImage]? { get }
     
     func numberOfRows() -> Int?

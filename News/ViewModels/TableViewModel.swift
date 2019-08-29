@@ -10,45 +10,40 @@ import Foundation
 import UIKit
 
 class TableViewModel: TableViewViewModelType {
+    private var ifAppJustStartedThenUpdate: Bool = true
+    private var selectedIndexpath: IndexPath?
     
-    
-    
-    private var posts: [Post]?
+    var newLoads: [Int]?
+    var posts: [Post]?
     var postImageData: [Int : UIImage]? = [:]
     
     var apiURL: String? {
         willSet {
             guard let value = newValue else { return }
             let networkManager = NetworkManager(url: value)
-            networkManager.getNews {[weak self] in
+            networkManager.getNews(news: posts, postImageData: postImageData!) { [weak self] in
                 if $0 != nil {
-                   self?.posts = $0
+                    self?.posts = $0
+                    print("POST COUNT - \(self?.posts?.count)")
+                    if self!.ifAppJustStartedThenUpdate {
+                        self!.updateTable!()
+                        self!.ifAppJustStartedThenUpdate = !self!.ifAppJustStartedThenUpdate
+                    }
                 }
-//                self?.postImageData = $1
-                if $1 != nil {
-                    self?.postImageData = $1
-                    guard let update = self!.updateTable else { return }
-                    
-                    update()                }
-                
-                self!.isNeededToReloadTable = !self!.isNeededToReloadTable
+                guard let postImageData = $1 else { return }
+                self?.postImageData = postImageData
+                guard let newLoads = $2 else { return }
+                self?.newLoads = newLoads
+                let indexes = self?.prepareForRowUpdate()
+                guard indexes!.count != 0 else { return }
+                self!.updateRows!(indexes!)
                 
             }
         }
     }
     
-    var isNeededToReloadTable: Bool = false {
-        willSet {
-            if newValue {
-                guard let update = updateTable else { return }
-//                isNeededToReloadTable = !isNeededToReloadTable!
-                update()
-            }
-        }
-    }
     var updateTable: (() -> ())?
-    
-    private var selectedIndexpath: IndexPath?
+    var updateRows: (([IndexPath]) -> ())?
     
     func numberOfRows() -> Int? {
         return posts?.count
@@ -67,5 +62,15 @@ class TableViewModel: TableViewViewModelType {
     
     func selectRow(atIndexPath indexPath: IndexPath) {
         self.selectedIndexpath = indexPath
+    }
+    
+    func prepareForRowUpdate() -> [IndexPath] {
+        var array: [IndexPath] = []
+        for (index, post) in (posts?.enumerated())! {
+            if (newLoads?.contains(post.id))! {
+                array.append(IndexPath(row: index, section: 0))
+            }
+        }
+        return array
     }
 }

@@ -16,18 +16,30 @@ class NetworkManager: NSObject {
     private let url: String
     private var postImageData: [Int: UIImage]?
 
-
-    func getNews(complitionhandler: @escaping ([Post]?, [Int: UIImage]?)-> ()) {
+    func getNews(news: [Post]?, postImageData: [Int: UIImage], complitionhandler: @escaping ([Post]?, [Int: UIImage]?, [Int]?)-> ()) {
+        self.news = news
+        self.postImageData = postImageData
         let component = URLComponents(string: url)
-//        component?.queryItems = [URLQueryItem(name: "count", value: "23")]
         let request = URLRequest(url: component!.url!)
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else { return }
             do {
-                let news = try JSONDecoder().decode(News.self,from: data)
-                print(news.result.count)
-                self.news = news.result
+                let decodedNews = try JSONDecoder().decode(News.self,from: data)
+                print(decodedNews.result.count)
+                if self.news == nil {
+                    self.news = decodedNews.result
+                } else {
+                    for new in decodedNews.result {
+                        if !(self.news?.contains(where: { (post) -> Bool in
+                            guard post.id == new.id else { return false }
+                            return true
+                        }))! {
+                            self.news?.append(new)
+                        }
+                    }
+                    self.news?.sort(by: { $0.date > $1.date })
+                }
             } catch {
                 print(error)
             }
@@ -35,28 +47,31 @@ class NetworkManager: NSObject {
             runQueue.async {
                 self.asyncLoadIamge(complitionHandler: complitionhandler)
             }
-
-            
-//            complitionhandler(self.news!, self.postImageData!)
-            complitionhandler(self.news!, nil)
+            complitionhandler(self.news!, nil, nil)
 
             
         }.resume()
     }
     
     
-    func asyncLoadIamge(complitionHandler: ([Post]?,[Int: UIImage]?) -> ()) {
+    func asyncLoadIamge(complitionHandler: ([Post]?,[Int: UIImage]?,[Int]) -> ()) {
         var data: Data?
-        var array: [Int: UIImage] = [:]
+        var newLoads: [Int] = []
         
         for value in self.news! {
+            if !(self.postImageData?.contains(where: { (key,_) -> Bool in
+                guard key == value.id else { return false }
+                return true
+            }))! {
+                print("never was")
                 do {
                     print(value.cover?.additionalData?.type)
-                    if let url = value.cover?.url, value.cover?.additionalData?.type != "gif" {
+                    if let url = value.cover?.thumbnailUrl, value.cover?.additionalData?.type != "gif" {
                         print(url)
                         data = try Data(contentsOf: URL(string: url)!)
                         let img = UIImage(data: data!)!
-                        array.updateValue(img, forKey: value.id)
+                        self.postImageData?.updateValue(img, forKey: value.id)
+                        newLoads.append(value.id)
                     } else {
                         continue
                     }
@@ -65,15 +80,15 @@ class NetworkManager: NSObject {
                 } catch {
                     print(error)
                 }
+            }
         }
-        complitionHandler(nil,array)
-        
-//        self.postImageData = array
+        print("")
+        print("DOWNLOADED")
+        print("")
+        complitionHandler(nil,self.postImageData, newLoads)
     }
     
     init(url: String) {
         self.url = url
     }
-    
-    
 }
