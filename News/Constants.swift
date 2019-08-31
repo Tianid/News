@@ -20,6 +20,6 @@ enum APIType: String {
     case dtfAPI = "https://api.dtf.ru/v1.8/timeline/mainpage/recent"
     case dtfAPIPost = "https://api.dtf.ru/v1.8/entry/65622"
     case dtfAPINext = "https://api.dtf.ru/v1.8/timeline/gamedev/indie/recent"
-    
+    //https://api.dtf.ru/v1.8/entry/66339
 }
 

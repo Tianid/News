@@ -77,6 +77,21 @@ extension DTFTableViewController: UITableViewDataSource, UITableViewDelegate {
         tableViewCell.viewModel = cellViewModel
         return tableViewCell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = tableViewModel else { return }
+        viewModel.selectRow(atIndexPath: indexPath)
+        performSegue(withIdentifier: "showDetail", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier, let viewModel = tableViewModel else { return }
+        if identifier == "showDetail" {
+            if let dvc = segue.destination as? DetailViewController {
+                dvc.viewModel = viewModel.viewModelForSelectedRow()
+            }
+        }
+    }
 }
 
 

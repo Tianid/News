@@ -57,7 +57,7 @@ class TableViewModel: TableViewViewModelType {
     
     func viewModelForSelectedRow() -> DetailViewModelType? {
         guard let selectedIndexPath = selectedIndexpath else { return nil }
-        return DetailViewModel()
+        return DetailViewModel(post: posts![selectedIndexPath.row], postImage: postImageData![posts![selectedIndexPath.row].id])
     }
     
     func selectRow(atIndexPath indexPath: IndexPath) {

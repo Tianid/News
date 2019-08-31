@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12A7275A231ABDBA0048F254 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A72759231ABDBA0048F254 /* DetailViewController.swift */; };
 		12AAFD98230D84F70014109F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AAFD97230D84F70014109F /* AppDelegate.swift */; };
 		12AAFD9A230D84F70014109F /* DTFTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AAFD99230D84F70014109F /* DTFTableViewController.swift */; };
 		12AAFD9D230D84F70014109F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12AAFD9B230D84F70014109F /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12A72759231ABDBA0048F254 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		12AAFD94230D84F70014109F /* News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = News.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12AAFD97230D84F70014109F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12AAFD99230D84F70014109F /* DTFTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTFTableViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				12AAFDAA230D862B0014109F /* TJTableViewController.swift */,
 				12AAFDD2230DDB0C0014109F /* MyTableViewCell.swift */,
 				12AAFDD3230DDB0C0014109F /* MyTableViewCell.xib */,
+				12A72759231ABDBA0048F254 /* DetailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				12AAFD9A230D84F70014109F /* DTFTableViewController.swift in Sources */,
 				12DCABFA230F0DB600FA4508 /* Constants.swift in Sources */,
 				12AAFD98230D84F70014109F /* AppDelegate.swift in Sources */,
+				12A7275A231ABDBA0048F254 /* DetailViewController.swift in Sources */,
 				12AAFDC4230D90210014109F /* TableViewCellViewModel.swift in Sources */,
 				12AAFDD4230DDB0C0014109F /* MyTableViewCell.swift in Sources */,
 				12AAFDCD230DA1630014109F /* APIResponse.swift in Sources */,

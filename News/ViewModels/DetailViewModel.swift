@@ -7,8 +7,18 @@
 //
 
 import Foundation
-
+import UIKit
 
 class DetailViewModel: DetailViewModelType {
+    var post: Post?
+    var postImage: UIImage?
+    
+    
+    
+    
+    init(post: Post, postImage: UIImage?) {
+        self.post = post
+        self.postImage = postImage
+    }
     
 }

@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
 protocol DetailViewModelType {
-    
+    var post: Post? { get }
+    var postImage: UIImage? { get }
 }
