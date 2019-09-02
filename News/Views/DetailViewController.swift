@@ -17,13 +17,21 @@ class DetailViewController: UIViewController {
     
     var viewModel: DetailViewModelType?
     private var imageView: UIImageView?
-//    var views: [UIView]?
+    var views: [UIView]? = []
+    private var postBlocks: [Any]?
+    private var text: String? = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         titlteLabel.text = viewModel?.post?.title
         dateLabel.text = viewModel?.post?.dateRFC
+        
+        let nm = NetworkManager(url: "")
+        let id = (viewModel?.post?.id)!
+        print(APIType.dtfAPIPost.rawValue)
+        postBlocks = nm.getPostBlocks(url: "\(APIType.dtfAPIPost.rawValue)\(id)")
+        
         
         if viewModel?.postImage != nil {
             imageView = UIImageView()
@@ -39,75 +47,56 @@ class DetailViewController: UIViewController {
                 ])
             imageView!.contentMode = .scaleAspectFit
             imageView!.image = viewModel?.postImage
+            views?.append(imageView!)
+        } else {
+            views?.append(titlteLabel)
         }
         
-        let label1 = UILabel()
-        label1.translatesAutoresizingMaskIntoConstraints = false
-        label1.text = "ajkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        label1.numberOfLines = 0
-        inScrollViewView.addSubview(label1)
-        NSLayoutConstraint.activate([
-            label1.leadingAnchor.constraint(equalTo: inScrollViewView.leadingAnchor),
-            label1.trailingAnchor.constraint(equalTo: inScrollViewView.trailingAnchor),
-            label1.topAnchor.constraint(equalTo: imageView!.bottomAnchor),
-            label1.bottomAnchor.constraint(equalTo: inScrollViewView.bottomAnchor)
-//            label1.bottomAnchor.constraint(lessThanOrEqualTo: inScrollViewView.bottomAnchor)
+        for (index, value) in (postBlocks?.enumerated())! {
             
-            ])
-
-//        let label2 = UILabel()
-//        label2.translatesAutoresizingMaskIntoConstraints = false
-//        label2.text = "ajkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-//        label2.numberOfLines = 0
-//        inScrollViewView.addSubview(label2)
-//        NSLayoutConstraint.activate([
-//            label2.leadingAnchor.constraint(equalTo: inScrollViewView.leadingAnchor),
-//            label2.trailingAnchor.constraint(equalTo: inScrollViewView.trailingAnchor),
-//            label2.topAnchor.constraint(equalTo: label1.bottomAnchor),
-////            label2.heightAnchor.constraint(equalToConstant: 100)
-//            ])
-//
-//        let label3 = UILabel()
-//        label3.translatesAutoresizingMaskIntoConstraints = false
-//        label3.text = "ajkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\najkshdsjkfjkdshfdjkshfjdskfhksd\najkhdajshdjkashdjkhaskjdhaskjhdaskjd\njkashdsjkashdakjshdaskjd\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-//        label3.numberOfLines = 0
-//        inScrollViewView.addSubview(label3)
-//        NSLayoutConstraint.activate([
-//            label3.leadingAnchor.constraint(equalTo: inScrollViewView.leadingAnchor),
-//            label3.trailingAnchor.constraint(equalTo: inScrollViewView.trailingAnchor),
-//            label3.topAnchor.constraint(equalTo: label2.bottomAnchor),
-//            label1.bottomAnchor.constraint(lessThanOrEqualTo: label2.topAnchor),
-//            label2.bottomAnchor.constraint(lessThanOrEqualTo: label3.topAnchor),
-//            label3.bottomAnchor.constraint(lessThanOrEqualTo: inScrollViewView.bottomAnchor)
-//            ])
-        
-//        var views = [UIView]()
-//
-//        if imageView != nil {
-//            views.append(imageView!)
-//        } else {
-//            views.append(titlteLabel)
-//        }
-//
-//        scrollView = UIScrollView()
-//        scrollView!.translatesAutoresizingMaskIntoConstraints = false
-//        scrollView?.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-//        view.addSubview(scrollView!)
-//        NSLayoutConstraint.activate([
-//            scrollView!.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            scrollView!.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            scrollView!.topAnchor.constraint(equalTo: views[0].bottomAnchor),
-//            scrollView!.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//            ])
-        
-        
-        
-        
-        
-
+            guard let block = value as? [String: Any] else { return }
+            if block["type"] as! String == "text" {
+                guard let data = block["data"] as? [String: Any] else { return }
+                guard let dataText = data["text"] as? String else { return }
+                text! += "\(dataText)\n"
+                
+            } else if block["type"] as! String != "text", text != "" {
+                addlabel()
+            }
+            
+            
+            
+            if index == postBlocks!.count - 1 {
+                if text != "" {
+                    addlabel()
+                }
+                NSLayoutConstraint.activate([
+                    views![views!.count - 1].bottomAnchor.constraint(lessThanOrEqualTo: inScrollViewView.bottomAnchor)
+                    ])
+                for index in 1..<views!.count - 1 {
+                    views![index].bottomAnchor.constraint(equalTo: views![index - 1].topAnchor)
+                }
+            }
+        }
         // Do any additional setup after loading the view.
     }
     
+    
+    func addlabel() {
+        let label = UILabel()
+        label.text = text
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        inScrollViewView.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            label.topAnchor.constraint(equalTo: views![views!.count - 1].bottomAnchor),
+            ])
+        views?.append(label)
+        text = ""
+    }
 
     /*
     // MARK: - Navigation

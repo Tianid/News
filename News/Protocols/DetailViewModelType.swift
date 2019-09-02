@@ -12,4 +12,5 @@ import UIKit
 protocol DetailViewModelType {
     var post: Post? { get }
     var postImage: UIImage? { get }
+    var blocks: [Blocks]? { get }
 }

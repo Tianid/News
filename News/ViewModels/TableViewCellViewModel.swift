@@ -44,7 +44,7 @@ class TableViewCellViewModel: TableViewCellViewModelType {
     }
     
     var blocks: [Blocks] {
-        guard let post = post else { return [Blocks(type: String(), data: DataAPI(text: nil, text_truncated: nil), cover: false)]}
+        guard let post = post else { return [Blocks(type: String(), data: DataAPI(text: nil, text_truncated: nil ), cover: false)]}
         return post.blocks
     }
     

@@ -57,6 +57,22 @@ struct DataAPI: Codable  {
     
 }
 
+struct Items: Codable {
+    let title: String?
+//    let image: Image?
+}
+
+struct Image: Codable {
+    let type: String?
+//    let kek: String?
+    let data: ItemData?
+}
+
+struct ItemData: Codable {
+    let uuid: String?
+    let type: String?
+}
+
 struct AdditionalData: Codable {
     let type: String
 //    let url: String

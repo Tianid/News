@@ -88,6 +88,36 @@ class NetworkManager: NSObject {
         complitionHandler(nil,self.postImageData, newLoads)
     }
     
+    func getPostBlocks(url: String) -> Array<Any>? {
+        let urll = URL(string: url)
+        var blocks: Array<Any>?
+        print(url)
+        do {
+            let data = try Data(contentsOf: urll!)
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+            guard let result  = json["result"] as? Dictionary<String, Any> else { return nil}
+            blocks = result["blocks"] as? Array<Any>
+        } catch {
+            print(error)
+        }
+        
+        
+        
+//        URLSession.shared.dataTask(with: urll!) { (data, response, error) in
+//            guard let data = data else { return }
+//            do {
+//                let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+//                guard let result  = json["result"] as? Dictionary<String, Any> else { return }
+//                blocks = result["blocks"] as? Array<Any>
+//            } catch {
+//                print(error)
+//            }
+//        }.resume()
+        return blocks
+    }
+    
+    
+    
     init(url: String) {
         self.url = url
     }
