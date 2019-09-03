@@ -48,8 +48,6 @@ class NetworkManager: NSObject {
                 self.asyncLoadIamge(complitionHandler: complitionhandler)
             }
             complitionhandler(self.news!, nil, nil)
-
-            
         }.resume()
     }
     
@@ -100,19 +98,6 @@ class NetworkManager: NSObject {
         } catch {
             print(error)
         }
-        
-        
-        
-//        URLSession.shared.dataTask(with: urll!) { (data, response, error) in
-//            guard let data = data else { return }
-//            do {
-//                let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-//                guard let result  = json["result"] as? Dictionary<String, Any> else { return }
-//                blocks = result["blocks"] as? Array<Any>
-//            } catch {
-//                print(error)
-//            }
-//        }.resume()
         return blocks
     }
     

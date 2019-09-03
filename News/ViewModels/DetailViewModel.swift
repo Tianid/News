@@ -12,14 +12,14 @@ import UIKit
 class DetailViewModel: DetailViewModelType {
     
     
+    
     var post: Post?
     var postImage: UIImage?
     var blocks: [Blocks]? {
         return post?.blocks
     }
-    
-    
-    
+    var postAPI: String?
+    var postImageAPI: String?
     
     init(post: Post, postImage: UIImage?) {
         self.post = post

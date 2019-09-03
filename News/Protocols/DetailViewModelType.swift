@@ -13,4 +13,6 @@ protocol DetailViewModelType {
     var post: Post? { get }
     var postImage: UIImage? { get }
     var blocks: [Blocks]? { get }
+    var postAPI: String? { get set }
+    var postImageAPI: String? { get set }
 }

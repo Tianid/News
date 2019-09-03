@@ -13,7 +13,7 @@
         <!--News list-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="DTFTableViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TableViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -136,7 +136,7 @@
         <!--News list-->
         <scene sceneID="UT6-o8-h3z">
             <objects>
-                <viewController id="LpI-fC-2sm" customClass="TJTableViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="LpI-fC-2sm" customClass="TableViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lB7-9F-4yM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,7 +161,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="News list" id="Xqf-W4-VJy"/>
                     <connections>
-                        <outlet property="myTableView" destination="qbq-qN-IZ5" id="8zw-MY-vPA"/>
+                        <outlet property="myTableView" destination="qbq-qN-IZ5" id="zdz-9U-JfL"/>
                         <segue destination="PiW-59-NDT" kind="show" identifier="showDetail" id="Gpz-WV-22Y"/>
                     </connections>
                 </viewController>

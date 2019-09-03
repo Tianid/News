@@ -8,25 +8,37 @@
 
 import UIKit
 
-class DTFTableViewController: UIViewController {
+class TableViewController: UIViewController {
     
     let reusableCell = "ReusableCell"
     var networkManager: NetworkManager?
     var tableViewModel: TableViewViewModelType?
     var unicCells: [Int]?
     var refresher: UIRefreshControl!
+    private var api: String?
+    private var apiPost: String?
+    private var mediaAPI: String?
 
     @IBOutlet weak var myTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if tabBarController?.selectedIndex == 0 {
+            api = APIType.dtfAPI.rawValue
+            apiPost = APIType.dtfAPIPost.rawValue
+            mediaAPI = APIType.mediaAPI.rawValue
+        } else {
+            api = APIType.tjAPI.rawValue
+            apiPost = APIType.tjAPIPost.rawValue
+            mediaAPI = APIType.mediaAPI.rawValue
+        }
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(refreshNewsPost), for: .valueChanged)
         myTableView.addSubview(refresher)
         
         tableViewModel = TableViewModel()
-        tableViewModel?.apiURL = APIType.dtfAPI.rawValue
+        tableViewModel?.apiURL = api
         tableViewModel?.updateTable = {
             DispatchQueue.main.async {
                 self.myTableView.reloadSections(IndexSet(integer: .zero), with: .fade)
@@ -55,13 +67,13 @@ class DTFTableViewController: UIViewController {
     
     @objc func refreshNewsPost() {
         print(" REFRESHING ")
-        tableViewModel?.apiURL = APIType.dtfAPI.rawValue
+        tableViewModel?.apiURL = api
         refresher.endRefreshing()
     }
     
 }
 
-extension DTFTableViewController: UITableViewDataSource, UITableViewDelegate {
+extension TableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableViewModel?.numberOfRows() ?? 0
@@ -89,9 +101,12 @@ extension DTFTableViewController: UITableViewDataSource, UITableViewDelegate {
         if identifier == "showDetail" {
             if let dvc = segue.destination as? DetailViewController {
                 dvc.viewModel = viewModel.viewModelForSelectedRow()
+                dvc.viewModel?.postAPI = apiPost
+                dvc.viewModel?.postImageAPI = mediaAPI
             }
         }
     }
 }
+
 
 
