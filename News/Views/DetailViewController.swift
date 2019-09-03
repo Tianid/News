@@ -23,8 +23,11 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        setup()
+        // Do any additional setup after loading the view.
+    }
+    
+    func setup() {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC+3")
         dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
@@ -41,30 +44,30 @@ class DetailViewController: UIViewController {
         postBlocks = nm.getPostBlocks(url: "\(viewModel?.postAPI ?? "")\(id)")
         
         
-//        if viewModel?.postImage != nil {
-//            imageView = UIImageView()
-//            imageView!.backgroundColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
-//            view.addSubview(imageView!)
-//            imageView!.translatesAutoresizingMaskIntoConstraints = false
-//
-//            NSLayoutConstraint.activate([
-//                imageView!.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//                imageView!.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//                imageView!.topAnchor.constraint(equalTo: titlteLabel.bottomAnchor),
-//                imageView!.heightAnchor.constraint(equalToConstant: 181)
-//                ])
-//            imageView!.contentMode = .scaleAspectFit
-//            imageView!.image = viewModel?.postImage
-//            views?.append(imageView!)
-//        } else {
-//        }
+        //        if viewModel?.postImage != nil {
+        //            imageView = UIImageView()
+        //            imageView!.backgroundColor = #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1)
+        //            view.addSubview(imageView!)
+        //            imageView!.translatesAutoresizingMaskIntoConstraints = false
+        //
+        //            NSLayoutConstraint.activate([
+        //                imageView!.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        //                imageView!.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        //                imageView!.topAnchor.constraint(equalTo: titlteLabel.bottomAnchor),
+        //                imageView!.heightAnchor.constraint(equalToConstant: 181)
+        //                ])
+        //            imageView!.contentMode = .scaleAspectFit
+        //            imageView!.image = viewModel?.postImage
+        //            views?.append(imageView!)
+        //        } else {
+        //        }
         views?.append(titlteLabel)
-
+        
         
         for (index, value) in (postBlocks?.enumerated())! {
             
             guard let block = value as? [String: Any] else { return }
-           
+            
             switch block["type"] as? String {
             case "text":
                 guard let data = block["data"] as? [String: Any] else { return }
@@ -168,7 +171,6 @@ class DetailViewController: UIViewController {
                 }
             }
         }
-        // Do any additional setup after loading the view.
     }
     
     
